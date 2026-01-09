@@ -1,7 +1,11 @@
 ---
 import { Navbar } from "../components/Navbar";
+import { TopBar } from "../components/TopBar";
 import Layout from "../Layout/Layout.astro";
 ---
 <Layout>
-	<Navbar />
+    <Navbar client:load />
+	<section class="main-content">
+		<TopBar client:load/>
+	</section>
 </Layout>

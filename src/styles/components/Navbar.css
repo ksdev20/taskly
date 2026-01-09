@@ -1,17 +1,21 @@
 .navbar{
     display: flex;
     flex-direction: column;
-    background-color: white;
-    border-radius: 12px;
     width: fit-content;
     height: 100%;
     width: 35vw;
+    max-width: 350px;
+}
 
+.navbar button{
+    outline: none;
+    border: none;
 }
 
 .navbar a{
     text-decoration: none;
     color: black;
+    width: 100%;
 }
 
 .logo-section{
@@ -38,7 +42,7 @@
     flex-direction: column;
     justify-content: space-between;
     height: 900px;
-    color: #2e2e2e;
+    color: var(--secondary-text);
 }
 
 .buttons-section svg{
@@ -51,6 +55,15 @@
     list-style: none;
 }
 
+.buttons-section li{
+    border-bottom: 0.5px solid #808080;
+    position: relative;
+}
+
+.buttons-section li:last-child{
+    border: none;
+}
+
 .bs-btn {
     font-size: 18px;
     font-weight: 600;
@@ -58,9 +71,28 @@
     align-items: center;
     padding: 20px 10px;
     width: 100%;
-    border-bottom: 0.5px solid #808080;
     gap: 10px;
     align-items: center;
+    z-index: 10;
+}
+
+.bs-btn.active{
+    background-color: var(--nav-btn-hov);
+    padding-left: 15px;
+}
+
+.bs-btn.active:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    width: 4px;
+    height: 100%;
+    background-color: var(--secondary);
+}
+
+.bs-btn:hover{
+    background-color: var(--nav-btn-hov);
 }
 
 .bs-btn:last-child{

@@ -1,0 +1,16 @@
+---
+const fontImportLink = "https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"; 
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Taskly</title>
+  <link rel="styleseet" this.onloaded="this.remove()">
+  <link
+    rel="preload"
+    href={fontImportLink}
+    as="style"
+    onload="this.onLoad=null;this.rel='stylesheet'"
+  />
+</head>

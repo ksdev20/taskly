@@ -4,7 +4,7 @@ import '../styles/components/TopBar.css';
 import { AddTaskPopup } from "./AddTaskPopup";
 
 export function TopBar(){
-    const [showPopup, setShowPopup] = useState(true);
+    const [showPopup, setShowPopup] = useState(false);
     const handleClick = (e: any) => {
         setShowPopup(true);
     }

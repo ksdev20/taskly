@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Icon } from "../icons/icons";
 import "../styles/components/AddTaskPopup.css";
+import { TagPopup } from "./TagPopup";
+import { performDbAction } from "../dbFunctions/dbFunctions";
 
 export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
   const [state, setTaskState] = useState({
@@ -8,11 +10,13 @@ export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
     description: "",
     day: "",
     notification: "",
-    priority: false,
+    priority: "",
     tags: [],
   });
 
   const [nameError, setNameError] = useState(false);
+  const [tagPopup, setTagPopup] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const setState = (field: string, value: any) => {
     setTaskState((prev) => ({ ...prev, [field]: value }));
@@ -22,40 +26,34 @@ export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
     if (e.target === e.currentTarget) popupHandler(false);
   };
 
-  const onAddTask = () => {
+  const dayClick = (day: string) => {
+    const valueToSet = state.day === day ? "" : day;
+    setState("day", valueToSet);
+  };
+
+  const notificationClick = () => {
+    const valueToSet = state.notification === "in-1-hour" ? "" : "in-1-hour";
+    setState("notification", valueToSet);
+  };
+
+  const priorityClick = (p: string) => {
+    const valueToSet = state.priority === p ? "" : p;
+    setState("priority", valueToSet);
+  };
+
+  const onAddTask = async () => {
     if (state.taskName === "") {
       setNameError(true);
       return;
-    }
-
-    if (state.taskName !== "") {
+    } else {
       setNameError(false);
+      setLoading(true);
+      performDbAction("add", state).then(e => {
+        setLoading(false);
+        window.location.reload();
+      });
     }
   };
-
-  const dayClick = (day: string) => {
-    if (state.day === day){
-      setState("day", "");
-      return;
-    }
-    setState("day", day);
-  }
-
-  const notificationClick = () => {
-    if (state.notification === "in-1-hour") {
-      setState("notification", "");
-      return;
-    }
-    setState("notification", "in-1-hour");
-  };
-
-  const handlePriority = () => {
-    if (state.priority === true) {
-      setState("priority", false);
-      return;
-    }
-    setState("priority", true);
-  }
 
   return (
     <div className="add-task-popup">
@@ -129,9 +127,32 @@ export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
                 <Icon name="priority" />
                 <p>Priority</p>
               </div>
-              <div className={`atp-btn-end ${state.priority === true ? 'active' : ''}`}>
-                <button onClick={handlePriority}>{state.priority === true ? <Icon name="add-filled" /> : <Icon name="add" />}</button>
-                <p>{state.priority === true ? 'Added Priority' : 'Add priority'}</p>
+              <div className="atp-btn-end">
+                <button
+                  className={`atpm-btn ${
+                    state.priority === "low" ? "active" : ""
+                  }`}
+                  onClick={() => priorityClick("low")}
+                >
+                  Low
+                </button>
+                <button
+                  className={`atpm-btn ${
+                    state.priority === "medium" ? "active" : ""
+                  }`}
+                  onClick={() => priorityClick("medium")}
+                >
+                  Medium
+                </button>
+                <button
+                  className={`atpm-btn ${
+                    state.priority === "high" ? "active" : ""
+                  }`}
+                  onClick={() => priorityClick("high")}
+                >
+                  High
+                </button>
+                <Icon name="add" />
               </div>
             </div>
             <div className="atp-btn">
@@ -140,9 +161,14 @@ export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
                 <p>Tags</p>
               </div>
               <div className="atp-btn-end">
-                <Icon name="add" />
-                <p>Add tags</p>
+                <button onClick={() => setTagPopup(true)}>
+                  <Icon name="add" />
+                </button>
+                {
+                  state.tags.length === 0 ? <p>Add tags</p> : state.tags.map((e, idx) => <div key={idx} className="tag-name">{e}</div>)
+                }
               </div>
+              {tagPopup && <TagPopup popupHandler={setTagPopup} state={state} setState={setState}/>}
             </div>
           </section>
           <section className="atp-desc-section">
@@ -156,7 +182,7 @@ export function AddTaskPopup({ popupHandler }: { popupHandler: any }) {
           </section>
           <section className="atp-bottom">
             <button className="add-task-btn" onClick={onAddTask}>
-              Create task
+              {loading ? 'Creating...' : 'Create task'}
             </button>
           </section>
         </div>

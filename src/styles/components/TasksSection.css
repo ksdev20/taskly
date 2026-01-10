@@ -1,0 +1,83 @@
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-section {
+    gap: 30px;
+}
+
+.day-section {
+    padding: 10px 0px;
+}
+
+.tasks-sec-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1FR;
+    gap: 30px;
+    width: 100%;
+    align-items: center;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.semi-bold{
+    font-weight: 500;
+}
+
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex-row svg {
+    cursor: pointer;
+}
+
+.ds-top {
+    padding: 10px 15px;
+    border-bottom: 1px solid gray;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.tl-task {
+    border-bottom: 1px solid gray;
+    padding: 10px 10px;
+}
+
+.due-date {
+    color: orangered;
+    font-weight: 500;
+}
+
+.add-task-btn.stage {
+    width: fit-content;
+    border: none;
+}
+
+.priority{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+    width: fit-content;
+    border-radius: 12px;
+}
+
+.priority.high {
+    background-color: #c38440;
+    color: white;
+}
+
+.priority.medium {
+    background-color: #d7b581;
+}
+
+.priority.low {
+    background-color: #f6b5ee;
+}

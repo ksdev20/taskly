@@ -101,6 +101,10 @@
     margin: 10px 0px;
 }
 
+.relative{
+    position: relative;
+}
+
 .atp-btn-start{
     display: flex;
     align-items: center;
@@ -166,4 +170,71 @@
 
 .atp-bottom button{
     border-radius: 24px;
+}
+
+.add-tags-modal{
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.411);
+}
+
+.atm-box{
+    background-color: #f5f3f1;
+    border-radius: 16px;
+    padding: 30px 30px;
+    position: relative;
+}
+
+.atmb-close{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.atmb-btn{
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-bottom: 1px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.atm-box input{
+    outline: 0;
+    border: 0;
+    border-radius: 6px;
+    padding: 8px 5px;
+}
+
+.atmb-input-sec{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.atmb-input-sec button{
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+}
+
+.tag-name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    padding: 5px 10px;
+    border-radius: 24px;
+    font-weight: 500;
+    background-color: var(--secondary);
 }

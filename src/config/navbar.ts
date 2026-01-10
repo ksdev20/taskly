@@ -2,27 +2,27 @@ export const navItems = [
     {
         text: "Dashboard",
         icon: "dashboard",
-        link: "/dashboard"
+        link: "/"
     },
     {
         text: "My tasks",
         icon: "my-tasks",
-        link: "/my-tasks"
+        link: "/"
     },
     {
         text: "Notifications",
         icon: "notifications",
-        link: "/notifications"
+        link: "/"
     },
     {
         text: "Settings",
         icon: "settings",
-        link: "/settings"
+        link: "/"
     },
     {
         text: "Log Out",
         icon: "log-out",
-        link: "/log-out"
+        link: "/"
     },
 ];
 
